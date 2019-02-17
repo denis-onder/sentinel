@@ -47,6 +47,13 @@ class Router {
         Vault_Controller.openVault(req, res);
       }
     );
+    this.router.post(
+      "/vault/add",
+      passport.authenticate("jwt", { session: false }),
+      (req: express.Request, res: express.Response) => {
+        Vault_Controller.addField(req, res);
+      }
+    );
   }
 }
 

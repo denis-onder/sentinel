@@ -7,6 +7,7 @@ import * as jwt from "jsonwebtoken";
 import IUserLogin from "../interfaces/IUserLogin";
 import IUserRegister from "../interfaces/IUserRegister";
 import IVault from "../interfaces/IVault";
+import IVaultField from "../interfaces/IVaultField";
 
 class Database {
   public import = require("arangojs").Database;
@@ -130,6 +131,10 @@ class Database {
         res.status(200).json(vault);
       }
     });
+  }
+  public addField(req: Request, res: Response, newField: IVaultField) {
+    // Add field to database
+    res.json(newField);
   }
 }
 

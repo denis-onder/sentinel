@@ -40,6 +40,27 @@ export class VaultController {
         }
       });
   }
+  public addField(req: Request, res: Response) {
+    const query = aqlQuery`
+        FOR vault IN vaults
+        FILTER vault.master == ${req.user.id}
+        RETURN vault
+    `;
+    Arango.database
+      .query(query)
+      .then((cursor: any) => cursor.all())
+      .then((keys: any) => {
+        if (keys.length > 0) {
+          const newField = {
+            name: req.body.name,
+            password: req.body.password
+          };
+          Arango.addField(req, res, newField);
+        } else {
+          res.status(404).send("You do not have a vault.");
+        }
+      });
+  }
 }
 
 // tslint:disable-next-line:variable-name
