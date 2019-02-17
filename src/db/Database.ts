@@ -6,11 +6,13 @@ import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 import IUserLogin from "../interfaces/IUserLogin";
 import IUserRegister from "../interfaces/IUserRegister";
+import IVaultKey from "../interfaces/IVaultKey";
 
 class Database {
   public import = require("arangojs").Database;
   public database = new this.import(process.env.DB_URL);
-  public collection = this.database.collection("users");
+  public userCollection = this.database.collection("users");
+  public vaultCollection = this.database.collection("vaults");
   constructor() {
     this.database.useDatabase("example");
     this.database.useBasicAuth("root", "root");
@@ -34,7 +36,7 @@ class Database {
             } else {
               user.password = encrypted;
               // Store user into the database
-              this.collection
+              this.userCollection
                 .save(user)
                 .then((meta: any) => {
                   // tslint:disable-next-line
@@ -94,6 +96,31 @@ class Database {
         }
       })
       .catch((error: any) => error);
+  }
+  public createVault(req: Request, res: Response) {
+    const vault: IVaultKey = {
+      key: req.body.key,
+      master: req.user.id
+    };
+    bcrypt.hash(vault.key, 10, (err, encrypted) => {
+      if (err) {
+        throw err;
+      } else {
+        vault.key = encrypted;
+        this.vaultCollection
+          .save(vault)
+          .then((meta: any) => {
+            // tslint:disable-next-line
+            console.log(`Vault created: ${meta._rev}`);
+            res.json(vault);
+          })
+          .catch((error: any) => {
+            // tslint:disable-next-line
+            console.log(`Failed to create a vault: ${error}`);
+            res.send("Forbidden.");
+          });
+      }
+    });
   }
 }
 
