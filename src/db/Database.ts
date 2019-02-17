@@ -7,7 +7,6 @@ import * as jwt from "jsonwebtoken";
 import IUserLogin from "../interfaces/IUserLogin";
 import IUserRegister from "../interfaces/IUserRegister";
 import IVault from "../interfaces/IVault";
-import IVaultKey from "../interfaces/IVaultKey";
 
 class Database {
   public import = require("arangojs").Database;
@@ -99,7 +98,7 @@ class Database {
       .catch((error: any) => error);
   }
   public createVault(req: Request, res: Response) {
-    const vault: IVaultKey = {
+    const vault: IVault = {
       key: req.body.key,
       master: req.user.id
     };
