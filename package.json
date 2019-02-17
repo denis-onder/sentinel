@@ -1,0 +1,49 @@
+{
+  "name": "sentinel",
+  "version": "1.0.0",
+  "description": "Password Manager with TypeScript, Express, ArangoDB and React",
+  "main": "dist/server.js",
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DennisOnder/sentinel.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "React",
+    "ArangoDB",
+    "Express"
+  ],
+  "author": "Dennis Onder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DennisOnder/sentinel/issues"
+  },
+  "homepage": "https://github.com/DennisOnder/sentinel#readme",
+  "dependencies": {
+    "arangojs": "^5.8.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.4",
+    "@types/dotenv": "^6.1.0",
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.9.4",
+    "@types/passport": "^1.0.0",
+    "dotenv": "^6.2.0",
+    "nodemon": "^1.18.10",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  }
+}
