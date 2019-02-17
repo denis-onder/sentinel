@@ -34,6 +34,13 @@ export class AuthController {
       Arango.loginUser(req, res, user);
     }
   }
+  public current(req: Request, res: Response) {
+    const user = {
+      id: req.user.id,
+      email: req.user.email
+    };
+    res.json(user);
+  }
 }
 
 // tslint:disable-next-line
