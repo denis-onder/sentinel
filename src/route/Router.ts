@@ -40,6 +40,13 @@ class Router {
         Vault_Controller.createVault(req, res);
       }
     );
+    this.router.get(
+      "/vault/get",
+      passport.authenticate("jwt", { session: false }),
+      (req: express.Request, res: express.Response) => {
+        Vault_Controller.openVault(req, res);
+      }
+    );
   }
 }
 

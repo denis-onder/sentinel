@@ -6,6 +6,7 @@ import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 import IUserLogin from "../interfaces/IUserLogin";
 import IUserRegister from "../interfaces/IUserRegister";
+import IVault from "../interfaces/IVault";
 import IVaultKey from "../interfaces/IVaultKey";
 
 class Database {
@@ -119,6 +120,15 @@ class Database {
             console.log(`Failed to create a vault: ${error}`);
             res.send("Forbidden.");
           });
+      }
+    });
+  }
+  public openVault(req: Request, res: Response, vault: IVault) {
+    bcrypt.compare(req.body.key, vault.key, (error, success) => {
+      if (!success) {
+        res.status(401).send("Unauthorized.");
+      } else {
+        res.status(200).json(vault);
       }
     });
   }
