@@ -63,7 +63,6 @@ class Database {
       .then((cursor: any) => cursor.all())
       .then((keys: any) => {
         if (keys.length > 0) {
-          // tslint:disable-next-line:arrow-parens
           bcrypt.compare(user.password, keys[0].password, (err, success) => {
             if (!success) {
               res.status(401).send("Unauthorized.");
