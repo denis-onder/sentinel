@@ -55,7 +55,8 @@ export class VaultController {
             name: req.body.name,
             password: req.body.password
           };
-          Arango.addField(req, res, newField);
+          const vault = keys[0];
+          Arango.addField(req, res, newField, vault);
         } else {
           res.status(404).send("You do not have a vault.");
         }

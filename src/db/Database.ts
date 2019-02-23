@@ -2,6 +2,7 @@
 // tslint:disable-next-line:no-var-requires
 const aqlQuery = require("arangojs").aqlQuery;
 import bcrypt from "bcrypt";
+import CryptoJS from "crypto-js";
 import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 import IUserLogin from "../interfaces/IUserLogin";
@@ -132,9 +133,18 @@ class Database {
       }
     });
   }
-  public addField(req: Request, res: Response, newField: IVaultField) {
+  public addField(
+    req: Request,
+    res: Response,
+    newField: IVaultField,
+    vault: IVault
+  ) {
+    const field = {
+      name: newField.name,
+      password: CryptoJS.AES.encrypt(newField.password, vault.key)
+    };
     // Add field to database
-    res.json(newField);
+    res.json(field);
   }
 }
 
