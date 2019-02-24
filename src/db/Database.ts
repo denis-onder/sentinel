@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import CryptoJS from "crypto-js";
 import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
+import uuid = require("uuid");
 import IUserLogin from "../interfaces/IUserLogin";
 import IUserRegister from "../interfaces/IUserRegister";
 import IVault from "../interfaces/IVault";
@@ -101,6 +102,7 @@ class Database {
   }
   public createVault(req: Request, res: Response) {
     const vault: IVault = {
+      _key: uuid(),
       key: req.body.key,
       master: req.user.id
     };
@@ -141,10 +143,21 @@ class Database {
   ) {
     const field = {
       name: newField.name,
-      password: CryptoJS.AES.encrypt(newField.password, vault.key)
+      password: CryptoJS.AES.encrypt(newField.password, vault.key).toString()
     };
-    // Add field to database
-    res.json(field);
+    const query = aqlQuery`
+      UPDATE ${vault._key.toString()} WITH { ${field.name}: ${
+      field.password
+    } } IN vaults
+      RETURN NEW
+    `;
+    this.database.query(query).then((keys: any) => {
+      if (keys) {
+        res.json(keys);
+      } else {
+        res.status(500).send("Server Error");
+      }
+    });
   }
 }
 
