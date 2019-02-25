@@ -126,12 +126,31 @@ class Database {
       }
     });
   }
-  public openVault(req: Request, res: Response, vault: IVault) {
+  public openVault(req: Request, res: Response, vault: any) {
+    const master = vault.key;
+    // tslint:disable-next-line:prefer-const
+    let openedVault: any = [];
     bcrypt.compare(req.body.key, vault.key, (error, success) => {
       if (!success) {
         res.status(401).send("Unauthorized.");
       } else {
-        res.status(200).json(vault);
+        Object.keys(vault).forEach((key: any) => {
+          if (
+            key !== "_key" &&
+            key !== "_id" &&
+            key !== "key" &&
+            key !== "master" &&
+            key !== "_rev"
+          ) {
+            const value = vault[key];
+            const bytes = CryptoJS.AES.decrypt(value, master);
+            const entry = {
+              [key]: bytes.toString(CryptoJS.enc.Utf8)
+            };
+            openedVault.push(entry);
+          }
+        });
+        res.status(200).json(openedVault);
       }
     });
   }
