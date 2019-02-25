@@ -7,7 +7,9 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "nodemon ."
+    "start": "nodemon .",
+    "client": "cd src/client && npm run dev",
+    "dev": "concurrently \"npm start\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -51,6 +53,7 @@
     "@types/passport-jwt": "^3.0.1",
     "@types/uuid": "^3.4.4",
     "@types/validator": "^10.9.0",
+    "concurrently": "^4.1.0",
     "dotenv": "^6.2.0",
     "nodemon": "^1.18.10",
     "tslint": "^5.12.1",
