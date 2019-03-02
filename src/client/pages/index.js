@@ -9,19 +9,19 @@ const Home = () => (
     <div className={css.hero}>
       <h1 className={css.title}>SENTINEL</h1>
       <div className={css.row}>
-        <Link>
+        <Link href="/getting-started">
           <a className={css.card}>
             <h3>Getting Started &rarr;</h3>
             <p>Learn more about Sentinel.</p>
           </a>
         </Link>
-        <Link>
+        <Link href="/login">
           <a className={css.card}>
             <h3>Log In &rarr;</h3>
             <p>If you already have an account, you can log in here.</p>
           </a>
         </Link>
-        <Link>
+        <Link href="/register">
           <a className={css.card}>
             <h3>Register &rarr;</h3>
             <p>

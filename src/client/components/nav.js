@@ -8,6 +8,15 @@ const Nav = () => (
         <Link prefetch href="/">
           <a>Home</a>
         </Link>
+        <Link prefetch href="/login">
+          <a>Login</a>
+        </Link>
+        <Link prefetch href="/register">
+          <a>Register</a>
+        </Link>
+        <Link prefetch href="/getting-started">
+          <a>Getting Started</a>
+        </Link>
       </li>
     </ul>
     <style jsx>{`
