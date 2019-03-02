@@ -1,6 +1,6 @@
 # Sentinel
 
-> A password manager built with Express, ArangoDB, React and Typescript.
+> A password manager built with Express, ArangoDB, React (Next.js) and Typescript.
 
 ---
 
