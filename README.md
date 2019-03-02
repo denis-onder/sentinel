@@ -17,3 +17,19 @@
 - `npm run dev - Starts both the Node and React server at the same time.`
 
 ---
+
+### Environmental Variables:
+
+> Ports and other sensitive/database information are stored within a .env file in the root directory
+
+> NOTE: Create a .env file in the root directory, and add the following properties with your matching values for establishing a connection with your local Arango database
+
+- `SERVER_PORT`
+- `SECRET_OR_KEY`
+- `DB_URL`
+- `DB_NAME`
+- `DB_COLLECTION`
+- `DB_USER`
+- `DB_PASSWORD`
+
+---
