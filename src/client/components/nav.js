@@ -1,50 +1,31 @@
 import React from "react";
 import Link from "next/link";
+import css from "../assets/scss/base.scss";
 
 const Nav = () => (
-  <nav>
+  <nav className={css.nav}>
     <ul>
-      <li>
+      <li className="liTag">
         <Link prefetch href="/">
           <a>Home</a>
         </Link>
+      </li>
+      <li className="liTag">
         <Link prefetch href="/login">
           <a>Login</a>
         </Link>
+      </li>
+      <li className="liTag">
         <Link prefetch href="/register">
           <a>Register</a>
         </Link>
+      </li>
+      <li className="liTag">
         <Link prefetch href="/getting-started">
           <a>Getting Started</a>
         </Link>
       </li>
     </ul>
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
   </nav>
 );
 
