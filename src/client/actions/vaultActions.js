@@ -15,7 +15,7 @@ export const createVault = vaultData => dispatch => {
 }
 
 export const addVault = vaultData => dispatch => {
-    axios.post('http://localhost:8000/api/vault/add', vaultData)
+    axios.put('http://localhost:8000/api/vault/add', vaultData)
         .then(res => console.log('Added to vault: ', res.data))
         .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 }
