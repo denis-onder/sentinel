@@ -1,5 +1,3 @@
-const ADD_FIELD = 'ADD_FIELD';
 const OPEN_VAULT = 'OPEN_VAULT';
-const CREATE_VAULT = 'CREATE_VAULT';
 const GET_USER = 'GET_USER';
 const GET_ERRORS = 'GET_ERRORS';
