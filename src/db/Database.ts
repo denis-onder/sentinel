@@ -44,12 +44,12 @@ class Database {
                 .then((meta: any) => {
                   // tslint:disable-next-line
                   console.log(`Document inserted: ${meta._rev}`);
-                  res.json(user);
+                  res.status(200).json(user);
                 })
                 .catch((error: any) => {
                   // tslint:disable-next-line
                   console.log(`Failed to insert a document: ${error}`);
-                  res.send("Forbidden.");
+                  res.status(401).send("Forbidden.");
                 });
             }
           });
@@ -82,7 +82,7 @@ class Database {
                   if (error) {
                     throw error;
                   } else {
-                    res.status(200).json(`Bearer ${token}`);
+                    res.status(200).json({ loggedIn: true, token: `Bearer ${token}` });
                   }
                 }
               );
@@ -93,7 +93,7 @@ class Database {
             .status(401)
             .send(
               `An account using the email address "${
-                user.email
+              user.email
               }" was not found.`
             );
         }
@@ -116,12 +116,12 @@ class Database {
           .then((meta: any) => {
             // tslint:disable-next-line
             console.log(`Vault created: ${meta._rev}`);
-            res.json(vault);
+            res.status(200).json(vault);
           })
           .catch((error: any) => {
             // tslint:disable-next-line
             console.log(`Failed to create a vault: ${error}`);
-            res.send("Forbidden.");
+            res.status(401).send("Forbidden.");
           });
       }
     });
@@ -167,14 +167,14 @@ class Database {
     const query = aqlQuery`
       UPDATE ${vault._key.toString()} WITH { ${field.name}: ${
       field.password
-    } } IN vaults
+      } } IN vaults
       RETURN NEW
     `;
     this.database.query(query).then((keys: any) => {
       if (keys) {
         res.json(keys);
       } else {
-        res.status(500).send("Server Error");
+        res.status(400).send("Bad request.");
       }
     });
   }
