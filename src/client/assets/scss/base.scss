@@ -27,7 +27,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   color: $color;
-  .title {
+  h1 {
     margin: 0;
     width: 100%;
     line-height: 1.15;
@@ -75,15 +75,11 @@ body {
   position: fixed;
   width: 100%;
   height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background: rgba(255, 255, 255, 0.1);
   ul {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     list-style-type: none;
     li {

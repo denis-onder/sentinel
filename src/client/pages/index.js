@@ -7,7 +7,7 @@ const Home = () => (
   <div>
     <Head title="Sentinel - Home" />
     <div className={css.hero}>
-      <h1 className={css.title}>SENTINEL</h1>
+      <h1>SENTINEL</h1>
       <div className={css.row}>
         <Link href="/getting-started">
           <a className={css.card}>
