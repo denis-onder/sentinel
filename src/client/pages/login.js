@@ -2,8 +2,6 @@ import React from "react";
 import Head from "../components/head";
 import Nav from "../components/nav";
 import css from "../assets/scss/base.scss";
-import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Store from '../store';
