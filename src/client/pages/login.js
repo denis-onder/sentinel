@@ -43,7 +43,7 @@ class Login extends React.Component {
           <form noValidate autoComplete="off">
             <h4>Login:</h4>
             <TextField
-              id="standard-name"
+              id="standard-email"
               label="Email"
               margin="normal"
               name="email"
