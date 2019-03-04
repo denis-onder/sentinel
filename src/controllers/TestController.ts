@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 export class TestController {
   public test(req: Request, res: Response) {
-    res.send(`Test Completed. Status: 200, Timestamp: ${Date.now()}`);
+    res.status(200).json(`Test Completed. Status: 200, Timestamp: ${Date.now()}`);
   }
 }
 

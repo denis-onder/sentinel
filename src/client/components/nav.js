@@ -4,6 +4,9 @@ import css from "../assets/scss/base.scss";
 
 const Nav = () => (
   <nav className={css.nav}>
+    <Link prefetch href="/">
+      <p>SENTINEL</p>
+    </Link>
     <ul>
       <li className="liTag">
         <Link prefetch href="/">

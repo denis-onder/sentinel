@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto|Montserrat");
 
-$color: whitesmoke;
-$color2: rgb(209, 209, 52);
+$color: #333;
+$color2: rgb(48, 63, 159);
 
 * {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
@@ -22,10 +22,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://images.pexels.com/photos/593158/pexels-photo-593158.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1920&w=1080");
-  background-size: cover;
-  background-repeat: no-repeat;
   color: $color;
   h1 {
     margin: 0;
@@ -69,26 +65,71 @@ body {
       cursor: pointer;
     }
   }
+  form {
+    width: 33vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3em 4em;
+    -webkit-box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+    -moz-box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+    box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+    input {
+      border-color: $color2;
+      width: 200%;
+    }
+    h4 {
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+      font-size: 22px;
+    }
+    .button {
+      background-color: $color2;
+      color: whitesmoke;
+      transition: all 0.2s;
+      margin-top: 2em;
+      width: 50%;
+      &:hover {
+        background-color: lighten($color2, 10%);
+      }
+    }
+  }
 }
 
 .nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   width: 100%;
   height: 50px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba($color2, 0.9);
+  -webkit-box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+  -moz-box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+  box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+  p {
+    color: whitesmoke;
+    letter-spacing: 3px;
+    float: left;
+    font-size: 18px;
+    cursor: pointer;
+  }
   ul {
+    float: right;
     display: flex;
     flex-direction: row;
-    justify-content: left;
     align-items: center;
     list-style-type: none;
     li {
       padding: 0 1em;
       a {
-        color: $color;
+        color: whitesmoke;
         text-decoration: none;
-        font-family: "Montserrat", Arial, Helvetica, sans-serif;
-        text-decoration-color: $color2;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
