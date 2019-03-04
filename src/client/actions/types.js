@@ -1,3 +1,0 @@
-const OPEN_VAULT = 'OPEN_VAULT';
-const GET_USER = 'GET_USER';
-const GET_ERRORS = 'GET_ERRORS';

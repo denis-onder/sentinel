@@ -3,14 +3,18 @@ import Head from "../components/head";
 import Nav from "../components/nav";
 import css from "../assets/scss/base.scss";
 
-const Login = () => (
-  <div>
-    <Head title="Sentinel - Login" />
-    <Nav />
-    <div className={css.hero}>
-      <h1 className={css.title}>Login</h1>
-    </div>
-  </div>
-);
+class Login extends React.Component {
+  render() {
+    return (
+      <div>
+        <Head title="Sentinel - Login" />
+        <Nav />
+        <div className={css.hero}>
+          <h1 className={css.title}>Login</h1>
+        </div>
+      </div>
+    )
+  }
+}
 
 export default Login;
