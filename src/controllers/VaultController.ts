@@ -23,6 +23,23 @@ export class VaultController {
         }
       });
   }
+  public checkForVault(req: Request, res: Response) {
+    const query = aqlQuery`
+        FOR vault IN vaults
+        FILTER vault.master == ${req.user.id}
+        RETURN vault
+    `;
+    Arango.database
+      .query(query)
+      .then((cursor: any) => cursor.all())
+      .then((keys: any) => {
+        if (keys.length > 0) {
+          res.status(200).json({ vaultExists: true });
+        } else {
+          res.status(200).json({ vaultExists: false });
+        }
+      });
+  }
   public openVault(req: Request, res: Response) {
     const query = aqlQuery`
         FOR vault IN vaults

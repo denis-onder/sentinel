@@ -134,3 +134,44 @@ body {
     }
   }
 }
+
+.vaultCreation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1, h4 {
+    font-weight: normal;
+  }
+  form {
+    width: 33vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3em 4em;
+    -webkit-box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+    -moz-box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+    box-shadow: 3px 3px 10px 1px rgba(148,148,148,1);
+    input {
+      border-color: $color2;
+      width: 200%;
+    }
+    h4 {
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+      font-size: 22px;
+    }
+    .button {
+      background-color: $color2;
+      color: whitesmoke;
+      transition: all 0.2s;
+      margin-top: 2em;
+      width: 50%;
+      &:hover {
+        background-color: lighten($color2, 10%);
+      }
+    }
+  }
+}

@@ -33,6 +33,12 @@ class Router {
         Auth_Controller.current(req, res);
       }
     );
+    this.router.get(
+      '/vault/check',
+      passport.authenticate('jwt', { session: false }),
+      (req: express.Request, res: express.Response) => {
+        Vault_Controller.checkForVault(req, res);
+      });
     this.router.post(
       "/vault/create",
       passport.authenticate("jwt", { session: false }),
