@@ -10,15 +10,17 @@ import IUserLogin from "../interfaces/IUserLogin";
 import IUserRegister from "../interfaces/IUserRegister";
 import IVault from "../interfaces/IVault";
 import IVaultField from "../interfaces/IVaultField";
+// tslint:disable-next-line
+require('dotenv').config();
 
 class Database {
   public import = require("arangojs").Database;
-  public database = new this.import(process.env.DB_URL);
-  public userCollection = this.database.collection("users");
-  public vaultCollection = this.database.collection("vaults");
+  public database = new this.import(`${process.env.DB_URL}`);
+  public userCollection = this.database.collection(`${process.env.DB_USER_COLLECTION}`);
+  public vaultCollection = this.database.collection(`${process.env.DB_VAULT_COLLECTION}`);
   constructor() {
-    this.database.useDatabase("example");
-    this.database.useBasicAuth("root", "root");
+    this.database.useDatabase(`${process.env.DB_NAME}`);
+    this.database.useBasicAuth(`${process.env.DB_USER}`, `${process.env.DB_PASSWORD}`);
   }
   public registerUser(req: Request, res: Response, user: IUserRegister) {
     const query = aqlQuery`
