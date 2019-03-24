@@ -36,6 +36,10 @@ class StoreClass {
                 .catch(err => reject(err.response.data));
         });
     }
+    logoutUser() {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+    }
     async checkForVault() {
         if (localStorage.token) {
             const { token } = localStorage;

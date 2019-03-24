@@ -175,3 +175,42 @@ body {
     }
   }
 }
+
+.sidebar {
+  background-color: $color2;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 10px 0;
+      i {
+        color: whitesmoke;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+          color: lighten($color2, 50%);
+        }
+      }
+    }
+  }
+}
+
+.dashboard {
+  h1 {
+    margin: 0;
+    padding: 20%;
+  }
+}

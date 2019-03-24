@@ -14,7 +14,15 @@
 
 - `npm start - Starts the Node server.`
 
-- `npm run dev - Starts both the Node and React server at the same time.`
+- `npm run dev - Starts both the Node and Next.js server at the same time.`
+
+---
+
+### Database Setup:
+
+> Sentinel is running ArangoDB as it's database solution. You are required to install ArangoDB on your system
+
+> Fill in the environmental variables according to the information you are using for your database setup
 
 ---
 
@@ -28,7 +36,8 @@
 - `SECRET_OR_KEY`
 - `DB_URL`
 - `DB_NAME`
-- `DB_COLLECTION`
+- `DB_VAULT_COLLECTION`
+- `DB_USER_COLLECTION`
 - `DB_USER`
 - `DB_PASSWORD`
 
