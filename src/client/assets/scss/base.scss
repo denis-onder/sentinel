@@ -209,8 +209,32 @@ body {
 }
 
 .dashboard {
-  h1 {
-    margin: 0;
-    padding: 20%;
+  width: 100%;
+  height: 100vh;
+  .wrapper {
+    width: 100%;
+    position: absolute;
+    top: 7%;
+    left: 7%;
+    h1 {
+      margin: 0;
+    }
+  }
+  .output {
+    margin-top: 50px;
+    width: 50%;
+    background-color: lighten($color2, 15%);
+    color: #fff;
+    .field {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: 1px solid whitesmoke;
+      padding: 1em;
+      margin: 0 10px;
+      &:last-child {
+        border-bottom: 1px solid transparent;
+      }
+    }
   }
 }
