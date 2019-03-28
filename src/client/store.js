@@ -51,7 +51,7 @@ class StoreClass {
                 window.location.href = '/vault-creation';
             }
         } else {
-            console.log('You are not logged in.');
+            window.location.href = '/login';
         }
     }
     createVault(data) {
@@ -67,14 +67,17 @@ class StoreClass {
                 })
                 .catch(err => console.log(err.response.data));
         } else {
-            console.log('You are not logged in.');
+            window.location.href = '/login';
         }
     }
     addFieldToVault(data) {
         // Add a new field to the vault
     }
-    openVault(data) {
-        // Open the vault
+    async openVault(key) {
+        const { token } = localStorage;
+        const res = await axios.get('http://localhost:8000/api/vault/get', key, { headers: { Authorization: token } });
+        const { data } = await res;
+        console.log(data);
     }
 }
 

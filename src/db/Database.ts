@@ -134,7 +134,7 @@ class Database {
     let openedVault: any = [];
     bcrypt.compare(req.body.key, vault.key, (error, success) => {
       if (!success) {
-        res.status(401).send("Unauthorized.");
+        res.status(401).send("Invalid password.");
       } else {
         Object.keys(vault).forEach((key: any) => {
           if (

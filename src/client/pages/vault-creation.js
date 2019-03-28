@@ -24,8 +24,8 @@ export default class VaultCreation extends React.Component {
         Store.createVault(userData);
     }
     componentDidMount() {
-        const vaultExists = Store.store.vaultExists;
-        if (vaultExists) {
+        Store.checkForVault();
+        if (Store.store.vaultExists) {
             window.location.href = '/dashboard';
         }
     }

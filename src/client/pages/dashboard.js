@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "../components/head";
 import css from "../assets/scss/base.scss";
+import TextField from '@material-ui/core/TextField';
 import Store from '../store';
 
 const Sidebar = () => {
@@ -24,8 +25,13 @@ export default class Dashboard extends React.Component {
   }
   componentDidMount = () => {
     Store.checkForVault();
-    if (Store.store.vaultExists) {
-      Store.openVault();
+  }
+  handleSubmit = e => {
+    if (e.which === 13) {
+      const keys = {
+        key: e.target.value
+      };
+      Store.openVault(keys);
     }
   }
   render() {
@@ -37,6 +43,15 @@ export default class Dashboard extends React.Component {
           <div>
             <div className={css.wrapper}>
               <h1>Dashboard</h1>
+              <TextField
+                id="standard-password-input"
+                label="Master Password:"
+                margin="normal"
+                name="password"
+                type="password"
+                style={{ display: !this.state.vaultOpen ? 'block' : 'none' }}
+                onKeyPress={this.handleSubmit}
+              />
               <div className={css.output} style={{ display: `${this.state.vaultOpen ? 'block' : 'none'}` }}>
                 <div className={css.field}><p>Name: Test</p><input type="password" placeholder="Password:" /></div>
                 <div className={css.field}><p>Name: Test</p><input type="password" placeholder="Password:" /></div>
