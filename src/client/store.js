@@ -76,8 +76,8 @@ class StoreClass {
     async openVault(key) {
         const { token } = localStorage;
         const res = await axios.get('http://localhost:8000/api/vault/get', key, { headers: { Authorization: token } });
-        const { data } = await res;
-        console.log(data);
+        const { data, status } = await res;
+        console.log(data, status);
     }
 }
 
