@@ -2,34 +2,34 @@ import React from "react";
 import Head from "../components/head";
 import Nav from "../components/nav";
 import css from "../assets/scss/base.scss";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Store from '../store';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Store from "../store";
 
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: ""
+    };
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
   }
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value });
   }
   onClick() {
     const userData = {
       email: this.state.email,
       password: this.state.password
-    }
+    };
     if (userData.email.length > 0 && userData.password.length > 0) {
       Store.loginUser(userData)
         .then(res => {
           const { token } = res;
-          localStorage.setItem('token', token);
-          window.location.href = '/dashboard';
+          localStorage.setItem("token", token);
+          window.location.href = "/vault-creation";
         })
         .catch(err => console.log(err));
     }
@@ -59,11 +59,17 @@ class Login extends React.Component {
               value={this.state.password}
               onChange={this.onChange}
             />
-            <Button variant="contained" className={css.button} onClick={this.onClick}>Submit</Button>
+            <Button
+              variant="contained"
+              className={css.button}
+              onClick={this.onClick}
+            >
+              Submit
+            </Button>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
