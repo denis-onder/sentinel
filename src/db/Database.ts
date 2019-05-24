@@ -10,17 +10,20 @@ import IUserLogin from "../interfaces/IUserLogin";
 import IUserRegister from "../interfaces/IUserRegister";
 import IVault from "../interfaces/IVault";
 import IVaultField from "../interfaces/IVaultField";
-// tslint:disable-next-line
-require('dotenv').config();
+import config from "../config/config";
 
 class Database {
   public import = require("arangojs").Database;
-  public database = new this.import(`${process.env.DB_URL}`);
-  public userCollection = this.database.collection(`${process.env.DB_USER_COLLECTION}`);
-  public vaultCollection = this.database.collection(`${process.env.DB_VAULT_COLLECTION}`);
+  public database = new this.import(`${config.DB_URL}`);
+  public userCollection = this.database.collection(
+    `${config.DB_USER_COLLECTION}`
+  );
+  public vaultCollection = this.database.collection(
+    `${config.DB_VAULT_COLLECTION}`
+  );
   constructor() {
-    this.database.useDatabase(`${process.env.DB_NAME}`);
-    this.database.useBasicAuth(`${process.env.DB_USER}`, `${process.env.DB_PASSWORD}`);
+    this.database.useDatabase(`${config.DB_NAME}`);
+    this.database.useBasicAuth(`${config.DB_USER}`, `${config.DB_PASSWORD}`);
   }
   public registerUser(req: Request, res: Response, user: IUserRegister) {
     const query = aqlQuery`
@@ -78,13 +81,15 @@ class Database {
                 {
                   id: keys[0]._key
                 },
-                process.env.SECRET_OR_KEY,
+                config.SECRET_OR_KEY,
                 { expiresIn: 86400 },
                 (error, token) => {
                   if (error) {
                     throw error;
                   } else {
-                    res.status(200).json({ loggedIn: true, token: `Bearer ${token}` });
+                    res
+                      .status(200)
+                      .json({ loggedIn: true, token: `Bearer ${token}` });
                   }
                 }
               );
@@ -95,7 +100,7 @@ class Database {
             .status(401)
             .send(
               `An account using the email address "${
-              user.email
+                user.email
               }" was not found.`
             );
         }
@@ -164,12 +169,13 @@ class Database {
   ) {
     const field = {
       name: newField.name,
+      serviceName: newField.serviceName,
       password: CryptoJS.AES.encrypt(newField.password, vault.key).toString()
     };
     const query = aqlQuery`
-      UPDATE ${vault._key.toString()} WITH { ${field.name}: ${
-      field.password
-      } } IN vaults
+      UPDATE ${vault._key.toString()} WITH { ${field.serviceName}: ${
+      field.name
+    }, ${field.password} } IN vaults
       RETURN NEW
     `;
     this.database.query(query).then((keys: any) => {

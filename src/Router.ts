@@ -1,7 +1,7 @@
 import express from "express";
-import { Auth_Controller } from "../controllers/AuthController";
-import { Test_Controller } from "../controllers/TestController";
-import { Vault_Controller } from "../controllers/VaultController";
+import { Auth_Controller } from "./controllers/AuthController";
+import { Test_Controller } from "./controllers/TestController";
+import { Vault_Controller } from "./controllers/VaultController";
 // tslint:disable-next-line:no-var-requires
 const passport = require("passport");
 
@@ -34,11 +34,12 @@ class Router {
       }
     );
     this.router.get(
-      '/vault/check',
-      passport.authenticate('jwt', { session: false }),
+      "/vault/check",
+      passport.authenticate("jwt", { session: false }),
       (req: express.Request, res: express.Response) => {
         Vault_Controller.checkForVault(req, res);
-      });
+      }
+    );
     this.router.post(
       "/vault/create",
       passport.authenticate("jwt", { session: false }),
@@ -63,4 +64,4 @@ class Router {
   }
 }
 
-export const Routes = new Router().router;
+export default new Router().router;

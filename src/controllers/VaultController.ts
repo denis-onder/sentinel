@@ -70,6 +70,7 @@ export class VaultController {
         if (keys.length > 0) {
           const newField = {
             name: req.body.name,
+            serviceName: req.body.serviceName,
             password: req.body.password
           };
           const vault = keys[0];
