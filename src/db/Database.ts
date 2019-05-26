@@ -1,7 +1,7 @@
 // tslint:disable:member-ordering
 // tslint:disable-next-line:no-var-requires
 const aqlQuery = require("arangojs").aqlQuery;
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import CryptoJS from "crypto-js";
 import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
