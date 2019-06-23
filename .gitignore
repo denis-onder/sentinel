@@ -2,3 +2,4 @@
 /dist
 git.sh
 .env
+package-lock.json

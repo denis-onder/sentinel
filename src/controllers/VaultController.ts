@@ -2,12 +2,13 @@
 // tslint:disable-next-line:no-var-requires
 const aqlQuery = require("arangojs").aqlQuery;
 import { Request, Response } from "express";
+import config from "../config/config";
 import Arango from "../db/Database";
 
 export class VaultController {
   public createVault(req: Request, res: Response) {
     const query = aqlQuery`
-        FOR vault IN vaults
+        FOR vault IN ${config.DB_VAULT_COLLECTION}
         FILTER vault.master == ${req.user.id}
         RETURN vault.master
     `;
@@ -25,7 +26,7 @@ export class VaultController {
   }
   public checkForVault(req: Request, res: Response) {
     const query = aqlQuery`
-        FOR vault IN vaults
+        FOR vault IN ${config.DB_VAULT_COLLECTION}
         FILTER vault.master == ${req.user.id}
         RETURN vault
     `;
@@ -42,7 +43,7 @@ export class VaultController {
   }
   public openVault(req: Request, res: Response) {
     const query = aqlQuery`
-        FOR vault IN vaults
+        FOR vault IN ${config.DB_VAULT_COLLECTION}
         FILTER vault.master == ${req.user.id}
         RETURN vault
     `;
@@ -59,7 +60,7 @@ export class VaultController {
   }
   public addField(req: Request, res: Response) {
     const query = aqlQuery`
-        FOR vault IN vaults
+        FOR vault IN ${config.DB_VAULT_COLLECTION}
         FILTER vault.master == ${req.user.id}
         RETURN vault
     `;

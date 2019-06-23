@@ -6,11 +6,11 @@ import CryptoJS from "crypto-js";
 import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 import uuid = require("uuid");
+import config from "../config/config";
 import IUserLogin from "../interfaces/IUserLogin";
 import IUserRegister from "../interfaces/IUserRegister";
 import IVault from "../interfaces/IVault";
 import IVaultField from "../interfaces/IVaultField";
-import config from "../config/config";
 
 class Database {
   public import = require("arangojs").Database;
@@ -27,7 +27,7 @@ class Database {
   }
   public registerUser(req: Request, res: Response, user: IUserRegister) {
     const query = aqlQuery`
-        FOR user IN users
+        FOR user IN ${config.DB_USER_COLLECTION}
         FILTER user.email == ${user.email}
         RETURN user.email
     `;
@@ -64,7 +64,7 @@ class Database {
   }
   public loginUser(req: Request, res: Response, user: IUserLogin) {
     const query = aqlQuery`
-        FOR user IN users
+        FOR user IN ${config.DB_USER_COLLECTION}
         FILTER user.email == ${user.email}
         RETURN user
     `;
