@@ -169,8 +169,8 @@ class Database {
   ) {
     const field = {
       name: newField.name,
-      serviceName: newField.serviceName,
-      password: CryptoJS.AES.encrypt(newField.password, vault.key).toString()
+      password: CryptoJS.AES.encrypt(newField.password, vault.key).toString(),
+      serviceName: newField.serviceName
     };
     const query = aqlQuery`
       UPDATE ${vault._key.toString()} WITH { ${field.serviceName}: ${
